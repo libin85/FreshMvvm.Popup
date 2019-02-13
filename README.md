@@ -52,12 +52,16 @@ Windows
     
 ### To Use
   Add a using statement : `using FreshMvvm.Popups`
+  
   To push a popuppage : `CoreMethods.PushPopupPageModel<SamplePopupPageModel>();`
+  
   To pop the page: `await CoreMethods.PopPopupPageModel();`
+  
   To pop all pages: `await CoreMethods.PopAllPopups();`
  
 ### Credits
 [Michael Ridland](https://github.com/rid00z) for FreshMvvm framework
+
 [Kirill Lyubimov](https://github.com/rotorgames) for Rg.Plugins.Popup
   
 
