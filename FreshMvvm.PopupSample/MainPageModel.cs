@@ -14,7 +14,7 @@ namespace FreshMvvm.PopupSample
             {
                 return new Command(async () =>
                 {
-                    await CoreMethods.PushPopupPageModel<SamplePopupPageModel>();
+                    await CoreMethods.PushPopupPageModel<SamplePopupPageModel>(1);
                 });
             }
         }

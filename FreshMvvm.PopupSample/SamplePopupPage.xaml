@@ -9,6 +9,10 @@
                  BackgroundColor="#00000000"
                  Padding="20,0,20,0">
             <Label Text="New Popup"/>
+            <Button Text="Close Popup" 
+                Command="{Binding ClosePopupCommand}" 
+                HorizontalOptions="Center" 
+                VerticalOptions="CenterAndExpand" />
     </StackLayout>
 </popup:PopupPage>
 

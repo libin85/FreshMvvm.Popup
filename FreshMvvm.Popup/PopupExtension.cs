@@ -13,7 +13,7 @@ namespace FreshMvvm.Popups
         public static async Task PushPopupPageModel<T>(this IPageModelCoreMethods pageModelCoreMethods, object data = null, bool animate = true) where T : FreshBasePageModel
         {
             var pageModel = FreshIOC.Container.Resolve<T>();
-            await PushPageModel(pageModel, data, animate);
+            await PushPopupPageModel(pageModel, data, animate);
         }
 
         public static async Task PushPopupPageModel<T, TPopupPage>(this IPageModelCoreMethods pageModelCoreMethods, object data = null, bool animate = true)
@@ -22,43 +22,47 @@ namespace FreshMvvm.Popups
             var pageModel = FreshIOC.Container.Resolve<T>();
             var page = FreshIOC.Container.Resolve<TPopupPage>();
             FreshPageModelResolver.BindingPageModel(data, page, pageModel);
-            await PushPageModelWithPage(page, animate);
+            await PushPopupPageModel(page, animate);
         }
 
-        public static Task PushPageModel(this IPageModelCoreMethods pageModelCoreMethods, Type pageModelType, bool animate = true)
+        public static Task PushPopupPageModel(this IPageModelCoreMethods pageModelCoreMethods, Type pageModelType, bool animate = true)
         {
-            return PushPageModel(pageModelType, null, animate);
+            return PushPopupPageModel(pageModelType, null, animate);
         }
 
-        public static Task PushPageModel( Type pageModelType, object data = null, bool animate = true)
+        public static Task PushPopupPageModel( Type pageModelType, object data = null, bool animate = true)
         {
             var pageModel = FreshIOC.Container.Resolve(pageModelType) as FreshBasePageModel;
 
-            return PushPageModel(pageModel, data, animate);
+            return PushPopupPageModel(pageModel, data, animate);
         }
 
-        private static async Task PushPageModel(FreshBasePageModel pageModel, object data = null, bool animate = true)
+        private static async Task PushPopupPageModel(FreshBasePageModel pageModel, object data = null, bool animate = true)
         {
             var page = FreshPageModelResolver.ResolvePageModel(data, pageModel);
             FreshPageModelResolver.BindingPageModel(data, page, pageModel);
 
             if (page is PopupPage)
-                await PushPageModelWithPage((PopupPage)page, animate);
+            {
+                await PushPopupPageModel((PopupPage)page, animate);
+            }
             else
+            {
                 throw new InvalidOperationException("Resolved page type is not PopupPage");
+            }
         }
 
-        private static async Task PushPageModelWithPage(PopupPage page, bool animate = true)
+        private static async Task PushPopupPageModel(PopupPage page, bool animate = true)
         {
             await PopupNavigation.Instance.PushAsync(page, animate);
         }
 
-        public static async Task PopPageModel(this IPageModelCoreMethods pageModelCoreMethods, bool animate = true)
+        public static async Task PopPopupPageModel(this IPageModelCoreMethods pageModelCoreMethods, bool animate = true)
         {
             await PopupNavigation.Instance.PopAsync(animate);
         }
 
-        public static async Task PopAll(this IPageModelCoreMethods pageModelCoreMethods)
+        public static async Task PopAllPopups(this IPageModelCoreMethods pageModelCoreMethods)
         {
             await PopupNavigation.Instance.PopAllAsync();
         }
