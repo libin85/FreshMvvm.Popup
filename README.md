@@ -1,7 +1,7 @@
 # FreshMvvm.Popup
 This library adds extension methods to support Popup navigation for Rg.Plugin.Popup from PageModels in FreshMvvm framework.
 
-This libaray uses the original [Rg.Plugins.Popup] library(https://github.com/rotorgames/Rg.Plugins.Popup) and requies you to do all the necessary initalisations to work.
+This libaray uses the original [Rg.Plugins.Popup](https://github.com/rotorgames/Rg.Plugins.Popup) and requies you to do all the necessary initalisations to work.
 
 ### Setup
 1. Reference the library in your Xamarin.Forms project.
@@ -39,4 +39,25 @@ iOS
            return base.FinishedLaunching (app, options);
         }
     }
+    
+Windows
+
+    Rg.Plugins.Popup.Popup.Init();
+    Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Popup.GetExtraAssemblies());
+
+    if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+    {
+        ...
+    }
+    
+### To Use
+  Add a using statement : `using FreshMvvm.Popups`
+  To push a popuppage : `CoreMethods.PushPopupPageModel<SamplePopupPageModel>();`
+  To pop the page: `await CoreMethods.PopPopupPageModel();`
+  To pop all pages: `await CoreMethods.PopAllPopups();`
+ 
+### Credits
+[Michael Ridland](https://github.com/rid00z) for FreshMvvm framework
+[Kirill Lyubimov](https://github.com/rotorgames) for Rg.Plugins.Popup
+  
 
