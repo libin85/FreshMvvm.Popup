@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:FreshMvvm.PopupSample" 
              x:Class="FreshMvvm.PopupSample.MainPage">
     <StackLayout>
-        <Button Text="Open Popup" 
-                Command="{Binding OpenPopupCommand}" 
+        <Button Text="Open Second Page" 
+                Command="{Binding OpenSecondPageCommand}" 
                 HorizontalOptions="Center" 
                 VerticalOptions="CenterAndExpand" />
     </StackLayout>
